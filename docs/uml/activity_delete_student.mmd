@@ -1,0 +1,11 @@
+flowchart TD
+    A([Start]) --> B[Click Delete action]
+    B --> C{User confirms?}
+    C -- No --> D([End])
+    C -- Yes --> E[Send DELETE request]
+    E --> F{Student exists?}
+    F -- No --> G[Return not found error]
+    G --> D
+    F -- Yes --> H[Delete record in repository]
+    H --> I[Show delete success toast]
+    I --> D

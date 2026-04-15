@@ -1,0 +1,11 @@
+flowchart TD
+    A([Start]) --> B[Enter search query and optional course filter]
+    B --> C[Submit filter form]
+    C --> D[Service applies query and course predicates]
+    D --> E[Display filtered students]
+    E --> F{Export CSV clicked?}
+    F -- No --> G([End])
+    F -- Yes --> H[Fetch full student list]
+    H --> I[Convert to CSV using exporter]
+    I --> J[Download students.csv]
+    J --> G

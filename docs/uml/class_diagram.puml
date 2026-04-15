@@ -1,0 +1,83 @@
+@startuml
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+class Student {
+  -Long id
+  -String name
+  -String email
+  -String course
+  -EnrollmentStatus status
+  -LocalDateTime createdAt
+  -LocalDateTime updatedAt
+}
+
+class StudentController {
+  +homePage()
+  +addStudentForm()
+  +getStudents()
+  +createStudent()
+  +updateStudent()
+  +deleteStudent()
+  +getStats()
+  +exportStudentsAsCsv()
+}
+
+class StudentService {
+  +addStudent(Student)
+  +updateStudent(Long, Student)
+  +deleteStudent(Long)
+  +searchStudents(String, String)
+  +getDashboardStats()
+  +exportStudentsAsCsv()
+}
+
+interface StudentRepository {
+  +findByEmailIgnoreCase(String)
+  +existsByEmailIgnoreCase(String)
+  +existsByEmailIgnoreCaseAndIdNot(String, Long)
+  +findByCourseIgnoreCase(String)
+}
+
+class StudentFactory {
+  +createNew(String, String, String, EnrollmentStatus)
+  +applyUpdates(Student, String, String, String, EnrollmentStatus)
+}
+
+class StudentCsvExporter {
+  +toCsv(List<Student>)
+}
+
+class StudentResponse {
+  +Long id
+  +String name
+  +String email
+  +String course
+  +EnrollmentStatus status
+  +LocalDateTime createdAt
+  +LocalDateTime updatedAt
+}
+
+class StudentResponseAdapter {
+  +adapt(Student) : StudentResponse
+}
+
+class StudentDashboardStats {
+  +long totalCount
+  +long activeCount
+  +long inactiveCount
+  +long alumniCount
+  +Map<String,Long> studentsByCourse
+}
+
+StudentController --> StudentService
+StudentController --> StudentResponseAdapter
+StudentService --> StudentRepository
+StudentService --> StudentFactory
+StudentService --> StudentCsvExporter
+StudentResponseAdapter --> Student
+StudentService --> StudentDashboardStats
+StudentRepository --> Student
+
+@enduml

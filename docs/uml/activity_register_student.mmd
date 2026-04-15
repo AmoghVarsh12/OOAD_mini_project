@@ -1,0 +1,13 @@
+flowchart TD
+    A([Start]) --> B[Enter name, email, course, status]
+    B --> C[Submit registration form]
+    C --> D{Input valid?}
+    D -- No --> E[Show field validation errors]
+    E --> B
+    D -- Yes --> F{Email already exists?}
+    F -- Yes --> G[Show duplicate email error]
+    G --> B
+    F -- No --> H[Create student using factory]
+    H --> I[Persist via repository]
+    I --> J[Show success flash message]
+    J --> K([End])

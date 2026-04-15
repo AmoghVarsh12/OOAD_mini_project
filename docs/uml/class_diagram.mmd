@@ -1,0 +1,80 @@
+%%{init: {'theme':'base','themeVariables':{'fontSize':'20px','fontFamily':'Segoe UI','primaryColor':'#ffffff','primaryTextColor':'#1f2937','lineColor':'#374151','tertiaryColor':'#f9fafb'}}}%%
+classDiagram
+    direction LR
+    class Student {
+        -Long id
+        -String name
+        -String email
+        -String course
+        -EnrollmentStatus status
+        -LocalDateTime createdAt
+        -LocalDateTime updatedAt
+    }
+
+    class StudentController {
+        +homePage()
+        +addStudentForm()
+        +getStudents()
+        +createStudent()
+        +updateStudent()
+        +deleteStudent()
+        +getStats()
+        +exportStudentsAsCsv()
+    }
+
+    class StudentService {
+        +addStudent(Student)
+        +updateStudent(Long, Student)
+        +deleteStudent(Long)
+        +searchStudents(String, String)
+        +getDashboardStats()
+        +exportStudentsAsCsv()
+    }
+
+    class StudentRepository {
+        <<interface>>
+        +findByEmailIgnoreCase(String)
+        +existsByEmailIgnoreCase(String)
+        +existsByEmailIgnoreCaseAndIdNot(String, Long)
+        +findByCourseIgnoreCase(String)
+    }
+
+    class StudentFactory {
+        +createNew(String, String, String, EnrollmentStatus)
+        +applyUpdates(Student, String, String, String, EnrollmentStatus)
+    }
+
+    class StudentCsvExporter {
+        +toCsv(List~Student~)
+    }
+
+    class StudentResponse {
+        +Long id
+        +String name
+        +String email
+        +String course
+        +EnrollmentStatus status
+        +LocalDateTime createdAt
+        +LocalDateTime updatedAt
+    }
+
+    class StudentResponseAdapter {
+        +adapt(Student)
+    }
+
+    class StudentDashboardStats {
+        +long totalCount
+        +long activeCount
+        +long inactiveCount
+        +long alumniCount
+        +Map~String,Long~ studentsByCourse
+    }
+
+    StudentController --> StudentService
+    StudentController --> StudentResponseAdapter
+    StudentService --> StudentRepository
+    StudentService --> StudentFactory
+    StudentService --> StudentCsvExporter
+    StudentResponseAdapter --> Student
+    StudentService --> StudentDashboardStats
+    StudentRepository --> Student

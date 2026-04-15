@@ -1,0 +1,24 @@
+flowchart LR
+    User[Staff User]
+    System((Student Management System))
+
+    UC1([Register Student])
+    UC2([View Students])
+    UC3([Update Student])
+    UC4([Delete Student])
+    UC5([Search and Filter Students])
+    UC6([Export Student Data as CSV])
+    UC7([View Dashboard Statistics])
+
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4
+    User --> UC5
+    User --> UC6
+    User --> UC7
+
+    UC1 -. uses .-> UC2
+    UC3 -. includes .-> UC2
+    UC4 -. includes .-> UC2
+    UC5 -. extends .-> UC2

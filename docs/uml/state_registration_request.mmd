@@ -1,0 +1,10 @@
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> Submitted: Form submitted
+    Submitted --> Rejected: Validation failed
+    Rejected --> Draft: User corrects data
+    Submitted --> Duplicate: Email already exists
+    Duplicate --> Draft: User changes email
+    Submitted --> Approved: Validation passed
+    Approved --> Persisted: Saved to database
+    Persisted --> [*]

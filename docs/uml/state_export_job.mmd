@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> Requested
+    Requested --> Preparing: Fetching student data
+    Preparing --> Transforming: Converting to CSV
+    Transforming --> Ready: File stream prepared
+    Ready --> Downloaded: Client receives CSV
+    Downloaded --> [*]
+    Transforming --> Failed: Unexpected error
+    Failed --> [*]

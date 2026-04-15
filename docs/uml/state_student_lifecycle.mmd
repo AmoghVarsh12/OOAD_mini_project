@@ -1,0 +1,7 @@
+stateDiagram-v2
+    [*] --> Active: Registered
+    Active --> Inactive: Temporarily paused
+    Inactive --> Active: Re-activated
+    Active --> Alumni: Program completed
+    Inactive --> Alumni: Program completed
+    Alumni --> [*]

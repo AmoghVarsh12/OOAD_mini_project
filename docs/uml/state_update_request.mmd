@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> Editing
+    Editing --> Submitted: Update requested
+    Submitted --> Invalid: Validation failed
+    Invalid --> Editing: Correct input
+    Submitted --> Conflict: Duplicate email conflict
+    Conflict --> Editing: Change email
+    Submitted --> Updated: Saved successfully
+    Updated --> [*]
