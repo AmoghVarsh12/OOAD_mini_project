@@ -93,8 +93,3 @@ jdbc:h2:mem:studentdb
 - Class diagram: docs/uml/class_diagram.mmd
 - Activity diagrams: docs/uml/activity_register_student.mmd, docs/uml/activity_update_student.mmd, docs/uml/activity_delete_student.mmd, docs/uml/activity_search_export.mmd
 - State diagrams: docs/uml/state_student_lifecycle.mmd, docs/uml/state_registration_request.mmd, docs/uml/state_update_request.mmd, docs/uml/state_export_job.mmd
-
-## Notes
-
-- Fill team member details and contribution ownership in docs/PROJECT_REPORT.md before final PDF submission.
-- Add screenshots and public GitHub repository URL in the report.
